@@ -1,10 +1,12 @@
-import React from "react";
-import ReactDOM from "react-dom";
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+import Tweets from './Tweets';
 
 const App = () => {
   return (
     <div>
-      <h1>Twitter API</h1>
+      <Tweets />
     </div>
   );
 };
