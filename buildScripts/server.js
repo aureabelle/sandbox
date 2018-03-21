@@ -13,9 +13,9 @@ const client = new Twitter({
   access_token_secret: '6MDHTBCMYNKy8b8zSMBy6fcnUQWOSf9M8KeBEyGCOuiZc'
 });
 
-app.get('/tweets', (req, res) => {
+app.get('/tweets?:username', (req, res) => {
   client.get('statuses/user_timeline', {
-    screen_name: 'bcruzr',
+    screen_name: req.query.username,
     count: 20
   }, (error, tweets, response) => {
     if(!error) {
@@ -23,19 +23,21 @@ app.get('/tweets', (req, res) => {
         tweets: tweets
       });
     } else {
-      console.log(error);
+      res.status(404).send(error);
     }
   });
 });
 
-app.get('/search', (req, res) => {
-  client.get('search/tweets', {q: '#winter'}, (error, tweets, response) => {
+app.get('/search?:keyword', (req, res) => {
+  client.get('search/tweets', {
+    q: req.query.keyword
+  }, (error, tweets, response) => {
     if(!error) {
       res.json({
         search: tweets
       });
     } else {
-      console.log(error);
+      res.status(404).send(error);
     }
 
   });
