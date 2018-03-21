@@ -8,7 +8,7 @@ npm run build
 npm start
 
 ## Search tweets by username
-Return tweets by user name -- ?username=USERNAME
+Return tweets by user name -- /username/USERNAME
 
 ## Search tweets by keyword
-Return tweets based on the search keyword -- ?keyword=KEYWORD
+Return tweets based on the search keyword -- /keyword/KEYWORD
