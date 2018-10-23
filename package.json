@@ -1,7 +1,7 @@
 {
-  "name": "twitter-api-wrapper",
+  "name": "itunes-search",
   "version": "1.0.0",
-  "description": "Twitter API wrapper using Node.js, REST, JSON API, built using Express",
+  "description": "itunes search",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -20,8 +20,7 @@
   "homepage": "https://github.com/aureabelle/sandbox#readme",
   "dependencies": {
     "express": "^4.16.2",
-    "path": "^0.12.7",
-    "twitter": "^1.7.1"
+    "path": "^0.12.7"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -29,6 +28,7 @@
     "babel-loader": "^7.1.4",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
+    "extract-css-chunks-webpack-plugin": "^3.2.0",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.0.6",
     "open": "0.0.5",

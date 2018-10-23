@@ -1,6 +1,10 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 
 module.exports = {
+  devServer: {
+    port: 3000,
+    host: '127.0.0.1'
+  },
   module: {
     rules: [
       {
@@ -18,7 +22,7 @@ module.exports = {
             options: { minimize: true }
           }
         ]
-      }
+      },
     ]
   },
   plugins: [

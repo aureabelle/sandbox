@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import Tweets from './Tweets';
+import Search from './Search';
 
 const App = () => {
   return (
     <div>
-      <Tweets />
+      <Search />
     </div>
   );
 };
