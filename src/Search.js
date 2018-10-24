@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import logo from './spotify-logo.png';
 
 class Search extends Component {
   constructor() {
@@ -15,39 +16,44 @@ class Search extends Component {
   componentDidMount() {
     const { term } = this.state;
 
-    fetch(`https://itunes.apple.com/search?term=${term}`)
-      .then(res => res.json())
-      .then(result => {
-          this.setState({
-            items: result.results,
-            isSearching: true
-          });
-        }, (error) => {
-          this.setState({
-            error
-          });
-        })
+    if (term !== '') {
+      fetch(`https://itunes.apple.com/search?term=${term}`)
+        .then(res => res.json())
+        .then(result => {
+            this.setState({
+              items: result.results,
+              isSearching: true
+            });
+          }, (error) => {
+            this.setState({
+              error
+            });
+          })
+    }
   }
 
   componentWillUpdate() {
     const { term } = this.state;
 
-    fetch(`https://itunes.apple.com/search?term=${term}`)
-      .then(res => res.json())
-      .then(result => {
-          this.setState({
-            items: result.results,
-            isSearching: true
-          });
-        }, (error) => {
-          this.setState({
-            error
-          });
-        })
+    if (term !== '') {
+      fetch(`https://itunes.apple.com/search?term=${term}`)
+        .then(res => res.json())
+        .then(result => {
+            this.setState({
+              items: result.results,
+              isSearching: true
+            });
+          }, (error) => {
+            this.setState({
+              error
+            });
+          })
+    }
   }
 
   handleInputChange(event) {
-    const { term } = this.state;
+    const { term, isSearching } = this.state;
+
     this.setState({
       term: event.target.value,
       isSearching: true
@@ -64,33 +70,35 @@ class Search extends Component {
     return (
       <div className="container">
         <div className="aside">
-          <h2>Spotify</h2>
+          <a className="logo"><img src={logo} /></a>
           <ul>
-            <li><a>Search</a></li>
-            <li><a>Home</a></li>
-            <li><a>Library</a></li>
+            <li><a href="#">Search</a></li>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Library</a></li>
           </ul>
         </div>
 
         <div className="main">
-          <input placeholder="Start typing..." value={term} onChange={this.handleInputChange} />
+          <input type="text" placeholder="Start typing..." value={term} onChange={this.handleInputChange} />
           {!isSearching ?
-            <div>
+            <div className="content blank-slate">
               <h1>Search Spotify</h1>
               <p>Find your favorite songs, artists, albums, podcasts and playlists.</p>
             </div>
           :
-            <div>
+            <div className="content results">
               <h1>Albums</h1>
-              {items.map((item, index) => {
-                return (
-                  <div key={`item-${index}`} className="album">
-                    <img src={item.artworkUrl100} />
-                    <span className="album-title">{item.collectionName}</span>
-                    <span className="artist">{item.artistName}</span>
-                  </div>
-                );
-              })}
+              <div className="albums">
+                {items.map((item, index) => {
+                  return (
+                    <div key={`item-${index}`} className="album">
+                      <img src={item.artworkUrl100} />
+                      <span className="album-title">{item.collectionName}</span>
+                      <span className="artist">{item.artistName}</span>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           }
         </div>
