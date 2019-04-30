@@ -26,8 +26,8 @@ a:visited {
 }
 
 .container {
-  color: white;
-  display: flex;
+  // color: white;
+  // display: flex;
   min-height: 100vh;
 }
 
@@ -99,41 +99,18 @@ a:visited {
   font-size: 0.85em;
 }
 
-.results h1 {
+h1 {
+  color: #000;
   font-size: 1.4em;
   margin-bottom: 1em;
   text-align: center;
 }
 
-.albums {
+.items {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
 }
 
-.albums .album {
-  text-align: center;
-  margin: 0 0.5em;
-  margin-bottom: 2em;
-  width: 200px;
-}
-
-.albums .album img {
-  width: 100%;
-}
-
-.albums .album span {
+.item span {
   display: block;
-  font-size: 0.7em;
-  line-height: 1.5;
 }
-
-.albums .album .album-title {
-  font-weight: 700;
-  margin-top: 0.5em;
-}
-
-.albums .album .artist {
-  color: #a1a5b3;
-}
-
