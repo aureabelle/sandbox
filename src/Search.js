@@ -1,45 +1,102 @@
 import React, { Component } from 'react';
 
 class Search extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      items: [],
+      snackers: [],
+      products: [],
+      selectedSnack: '',
       isSearching: false
     };
+    this.handleSelectChange = this.handleSelectChange.bind(this);
   }
 
   componentDidMount() {
-    fetch('http://api.giphy.com/v1/gifs/search?q=hello&api_key=qIdRU45kDuxbEvTyZZahSM8gENdH9e19&limit=100')
+    const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+
+    const snackersData = 'https://s3.amazonaws.com/misc-file-snack/MOCK_SNACKER_DATA.json';
+
+    const productsData = 'https://ca.desknibbles.com/products.json?limit=250';
+
+    fetch(proxyUrl + snackersData)
       .then(res => res.json())
       .then(result => {
           this.setState({
-            items: result.data,
+            snackers: result,
             isSearching: true
           });
-        }, (error) => {
+        }, error => {
           this.setState({
             error
           });
-        })
+        });
+
+    fetch(proxyUrl + productsData)
+      .then(response => response.json())
+      .then(result => {
+        this.setState({
+          products: result.products
+        });
+
+      }, error => {
+        this.setState({
+          dataError: error
+        });
+      });
   }
 
+  handleSelectChange(event) {
+    const { selectedSnack } = this.state;
+    const value = event.target.value;
+    this.setState({
+      selectedSnack: value
+    });
+  };
+
   render() {
-    const { items } = this.state;
+    const { snackers, products, selectedSnack } = this.state;
+    const filteredSnackers = snackers.filter(snacker => snacker.fave_snack === selectedSnack);
 
     return (
       <div className="container">
-        <h1>Animated Gifs</h1>
-        <div className="items">
-          {items.map((item, index) => {
+        <h1>Snackers & Snacks</h1>
+        <select onChange={this.handleSelectChange} value={selectedSnack}>
+          <option value=''>Select Snack</option>
+          {products.map((product, index) => {
             return (
-              <div className="item" key={`item-${index}`}>
-                <img src={item.images.downsized.url} height={item.images.downsized.height} width={item.images.downsized.width} alt={item.title} />
-                <span>{item.title}</span>
-              </div>
+              <option value={product.title}>{product.title} - {product.variants[0].price}</option>
             );
           })}
-        </div>
+        </select>
+
+        {filteredSnackers.length !== 0 &&
+          <table className="snackers">
+            <thead>
+              <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Favorite Snack</th>
+                <th>Email</th>
+                <th>Gender</th>
+                <th>IP</th>
+              </tr>
+            </thead>
+
+            {filteredSnackers.map((item, index) => {
+              return (
+                <tr className="item" key={`item-${index}`}>
+                  <td>{item.first_name}</td>
+                  <td>{item.last_name}</td>
+                  <td>{item.fave_snack}</td>
+                  <td>{item.email}</td>
+                  <td>{item.gender}</td>
+                  <td>{item.ip_address}</td>
+                </tr>
+              );
+            })}
+          </table>
+        }
       </div>
     );
   }
