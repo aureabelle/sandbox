@@ -94,7 +94,7 @@ class Search extends Component {
 
     return (
       <div className="container">
-        <h1>Snackers & Snacks</h1>
+        <h1>Find snackers who like</h1>
 
         <div className="dropdown">
           <Select
