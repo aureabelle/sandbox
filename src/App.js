@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
 import Search from './Search';
+
+import 'antd/dist/antd.css';
 import './app.css';
 
 const App = () => {

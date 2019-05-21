@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/aureabelle/sandbox#readme",
   "dependencies": {
+    "antd": "^3.18.2",
     "express": "^4.16.2",
     "path": "^0.12.7"
   },
