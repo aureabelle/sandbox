@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Table, Select, Alert, Icon } from 'antd';
+import fetch from 'node-fetch';
 
 const Option = Select.Option;
 const columns = [
@@ -47,9 +48,7 @@ class Search extends Component {
 
   componentDidMount() {
     const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
-
     const snackersData = 'https://s3.amazonaws.com/misc-file-snack/MOCK_SNACKER_DATA.json';
-
     const productsData = 'https://ca.desknibbles.com/products.json?limit=250';
 
     fetch(proxyUrl + snackersData)
