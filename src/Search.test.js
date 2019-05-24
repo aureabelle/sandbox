@@ -1,5 +1,5 @@
 import React from 'react';
-import Enzyme, { shallow, mount } from 'enzyme';
+import Enzyme, { shallow, mount, render } from 'enzyme';
 import Search from './Search';
 import Adapter from 'enzyme-adapter-react-16';
 
@@ -53,5 +53,11 @@ describe('Search Component', () => {
         const wrapper = shallow(<Search />);
         const header = wrapper.find('h1');
         expect(header.text()).toBe('Find snackers who like');
+    });
+
+    test('renders the table of snackers', () => {
+        const wrapper = render(<Search snackers={defaultProps.snackers} />);
+        const table = wrapper.find('Table')[0].children.length;
+        expect(table).toBe(3);
     });
 });
