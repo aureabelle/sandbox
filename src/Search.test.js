@@ -48,4 +48,10 @@ describe('Search Component', () => {
         const wrapper = shallow(<Search />);
         expect(wrapper.exists()).toBe(true);
     });
+
+    test('renders the header', () => {
+        const wrapper = shallow(<Search />);
+        const header = wrapper.find('h1');
+        expect(header.text()).toBe('Find snackers who like');
+    });
 });
