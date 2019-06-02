@@ -1,5 +1,5 @@
-# Twitter API Sandbox
-Playground for testing and experimenting with packages, components
+# HAL links to JSON file
+Follow HAL link and create a JSON file
 
 ## Build
 npm run build
@@ -7,8 +7,4 @@ npm run build
 ## Start
 npm start
 
-## Search tweets by username
-Return tweets by user name -- /username/USERNAME
-
-## Search tweets by keyword
-Return tweets based on the search keyword -- /keyword/KEYWORD
+When the app is done processing all the HAL links, a message 'File created!' will display on the log. The JSON file 'data.json' should then be created containing the links.
